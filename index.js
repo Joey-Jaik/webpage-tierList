@@ -47,8 +47,8 @@ tiers.forEach(element => {
         draggedItem.classList.add("ranked");
 
         //create variables to hold the scroll speed and the distance where scrolling will start
-        const scrollSpeed = 20;
-        const upperThreshold = 75;
+        const scrollSpeed = 50;
+        const upperThreshold = 150;
         const lowerThreshold = window.innerHeight - threshold;
     
         if (e.clientY < upperThreshold) {
@@ -63,6 +63,12 @@ tiers.forEach(element => {
     element.addEventListener("drop", (e) => {
         //prevent default behaviour to allow for items to be dropped inside
         e.preventDefault();
+
+        //ensure that movie image for Pig will automatically move to the Pig-tier...as that is where that movie belongs
+        if(draggedItem.id === "Pig"){
+            document.getElementById("Pig-tier").appendChild(draggedItem);
+            return;
+        }
 
         //if an image is being dragged then add that image to the tier
         if(draggedItem){
@@ -88,8 +94,8 @@ movieContainer.addEventListener("dragover", (e) => {
     movieContainer.classList.add("drag-over");
 
     //create variables to hold the scroll speed and the distance where scrolling will start
-    const scrollSpeed = 20;
-    const upperThreshold = 75;
+    const scrollSpeed = 50;
+    const upperThreshold = 150;
     const lowerThreshold = window.innerHeight - threshold;
 
     if (e.clientY < upperThreshold) {
